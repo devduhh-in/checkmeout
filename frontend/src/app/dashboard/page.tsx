@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { ApiStatus } from "@/components/ApiStatus";
+import { PlaceholderPage } from "@/components/PlaceholderPage";
 
 export const metadata: Metadata = {
   title: "Dashboard · CheckMeOut",
@@ -8,11 +9,9 @@ export const metadata: Metadata = {
 
 export default function DashboardHome() {
   return (
-    <main>
-      <span className="surface-label">Creator dashboard</span>
-      <h1>Dashboard</h1>
+    <PlaceholderPage label="Creator dashboard" title="Dashboard">
       <p>This is where creators will manage their portfolio. Sign-in arrives in Milestone 4.</p>
       <ApiStatus />
-    </main>
+    </PlaceholderPage>
   );
 }

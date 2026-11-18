@@ -1,0 +1,170 @@
+/*
+ * Platform stylesheet: Tailwind + CheckMeOut tokens.
+ *
+ * Tailwind's built-in colours, radii, shadows and fonts are switched off, so
+ * utilities can only use our tokens (e.g. bg-surface, text-muted, rounded-lg,
+ * shadow-md). Values themselves live in tokens.css.
+ */
+@import "tailwindcss";
+@import "./tokens.css";
+
+/* Remove Tailwind's default palette and scales so only our tokens exist. */
+@theme {
+  --color-*: initial;
+  --font-*: initial;
+  --text-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+  --ease-*: initial;
+  --animate-*: initial;
+}
+
+/* Map tokens to Tailwind utilities. "inline" keeps the var() references, so
+   light/dark switching and future token changes flow through automatically. */
+@theme inline {
+  --color-bg: var(--cmo-color-bg);
+  --color-surface: var(--cmo-color-surface);
+  --color-surface-sunken: var(--cmo-color-surface-sunken);
+  --color-overlay: var(--cmo-color-overlay);
+  --color-text: var(--cmo-color-text);
+  --color-muted: var(--cmo-color-text-muted);
+  --color-border: var(--cmo-color-border);
+  --color-border-strong: var(--cmo-color-border-strong);
+  --color-primary: var(--cmo-color-primary);
+  --color-primary-hover: var(--cmo-color-primary-hover);
+  --color-primary-soft: var(--cmo-color-primary-soft);
+  --color-on-primary: var(--cmo-color-on-primary);
+  --color-danger: var(--cmo-color-danger);
+  --color-danger-hover: var(--cmo-color-danger-hover);
+  --color-danger-soft: var(--cmo-color-danger-soft);
+  --color-on-danger: var(--cmo-color-on-danger);
+  --color-success: var(--cmo-color-success);
+  --color-success-soft: var(--cmo-color-success-soft);
+  --color-warning: var(--cmo-color-warning);
+  --color-info: var(--cmo-color-info);
+  --color-focus: var(--cmo-color-focus);
+  --color-transparent: transparent;
+
+  --font-sans: var(--cmo-font-sans);
+  --font-mono: var(--cmo-font-mono);
+
+  --text-xs: var(--cmo-text-xs);
+  --text-xs--line-height: var(--cmo-text-xs-leading);
+  --text-sm: var(--cmo-text-sm);
+  --text-sm--line-height: var(--cmo-text-sm-leading);
+  --text-base: var(--cmo-text-base);
+  --text-base--line-height: var(--cmo-text-base-leading);
+  --text-lg: var(--cmo-text-lg);
+  --text-lg--line-height: var(--cmo-text-lg-leading);
+  --text-xl: var(--cmo-text-xl);
+  --text-xl--line-height: var(--cmo-text-xl-leading);
+  --text-2xl: var(--cmo-text-2xl);
+  --text-2xl--line-height: var(--cmo-text-2xl-leading);
+  --text-3xl: var(--cmo-text-3xl);
+  --text-3xl--line-height: var(--cmo-text-3xl-leading);
+  --text-4xl: var(--cmo-text-4xl);
+  --text-4xl--line-height: var(--cmo-text-4xl-leading);
+
+  --font-weight-regular: var(--cmo-weight-regular);
+  --font-weight-medium: var(--cmo-weight-medium);
+  --font-weight-semibold: var(--cmo-weight-semibold);
+  --font-weight-bold: var(--cmo-weight-bold);
+
+  --spacing: var(--cmo-space-unit);
+
+  --radius-sm: var(--cmo-radius-sm);
+  --radius-md: var(--cmo-radius-md);
+  --radius-lg: var(--cmo-radius-lg);
+  --radius-xl: var(--cmo-radius-xl);
+  --radius-full: var(--cmo-radius-full);
+
+  --shadow-sm: var(--cmo-shadow-sm);
+  --shadow-md: var(--cmo-shadow-md);
+  --shadow-lg: var(--cmo-shadow-lg);
+
+  --ease-out: var(--cmo-ease-out);
+  --ease-in: var(--cmo-ease-in);
+
+  /* Overlay animations (used via data-[state=open]:animate-… on Radix parts). */
+  --animate-fade-in: cmo-fade-in var(--cmo-duration-base) var(--cmo-ease-out);
+  --animate-fade-out: cmo-fade-out var(--cmo-duration-fast) var(--cmo-ease-in);
+  --animate-modal-in: cmo-modal-in var(--cmo-duration-slow) var(--cmo-ease-out);
+  --animate-modal-out: cmo-modal-out var(--cmo-duration-fast) var(--cmo-ease-in);
+  --animate-sheet-in: cmo-sheet-in var(--cmo-duration-slow) var(--cmo-ease-out);
+  --animate-sheet-out: cmo-sheet-out var(--cmo-duration-base) var(--cmo-ease-in);
+  --animate-drawer-in: cmo-drawer-in var(--cmo-duration-slow) var(--cmo-ease-out);
+  --animate-drawer-out: cmo-drawer-out var(--cmo-duration-base) var(--cmo-ease-in);
+  --animate-toast-in: cmo-toast-in var(--cmo-duration-slow) var(--cmo-ease-out);
+  --animate-toast-out: cmo-fade-out var(--cmo-duration-base) var(--cmo-ease-in);
+  --animate-spin: cmo-spin 0.8s linear infinite;
+}
+
+@keyframes cmo-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes cmo-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes cmo-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+}
+@keyframes cmo-modal-out {
+  to {
+    opacity: 0;
+    transform: translateY(4px) scale(0.98);
+  }
+}
+@keyframes cmo-sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+}
+@keyframes cmo-sheet-out {
+  to {
+    transform: translateY(100%);
+  }
+}
+@keyframes cmo-drawer-in {
+  from {
+    transform: translateX(100%);
+  }
+}
+@keyframes cmo-drawer-out {
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes cmo-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+@keyframes cmo-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@layer base {
+  body {
+    background-color: var(--cmo-color-bg);
+    color: var(--cmo-color-text);
+    font-family: var(--cmo-font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* One visible, consistent keyboard focus style everywhere. */
+  :focus-visible {
+    outline: 2px solid var(--cmo-color-focus);
+    outline-offset: 2px;
+  }
+}

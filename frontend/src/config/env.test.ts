@@ -9,6 +9,7 @@ describe("readConfig", () => {
       appSubdomain: "app",
       apiOrigin: "http://127.0.0.1:8000",
       enablePreviewPaths: false,
+      showInternalTools: true,
     });
   });
 
@@ -41,6 +42,20 @@ describe("readConfig", () => {
     ["API_ORIGIN", "ftp://example.com"],
   ])("rejects invalid %s=%s", (key, value) => {
     expect(() => readConfig({ [key]: value })).toThrow(key);
+  });
+});
+
+describe("showInternalTools", () => {
+  it.each([
+    [{ VERCEL_ENV: "preview" }, true],
+    [{ VERCEL_ENV: "development" }, true],
+    [{ VERCEL_ENV: "production" }, false],
+    // Vercel production wins even though NODE_ENV says otherwise.
+    [{ VERCEL_ENV: "production", NODE_ENV: "development" }, false],
+    [{ NODE_ENV: "development" }, true],
+    [{ NODE_ENV: "production" }, false],
+  ])("%o → %s", (env, expected) => {
+    expect(readConfig(env).showInternalTools).toBe(expected);
   });
 });
 

@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 
+import { cn, Spinner } from "@/design-system";
+
 type Status =
   | { state: "checking" }
   | { state: "healthy"; version: string }
@@ -62,8 +64,22 @@ export function ApiStatus() {
   }, []);
 
   return (
-    <p className="status" role="status" aria-live="polite" data-api-status={status.state}>
-      {status.state === "checking" && "API: checking…"}
+    <p
+      role="status"
+      aria-live="polite"
+      data-api-status={status.state}
+      className={cn(
+        "flex items-center gap-2 rounded-md border px-4 py-3 text-sm font-medium",
+        status.state === "checking" && "border-border bg-surface-sunken text-muted",
+        status.state === "healthy" && "border-success/30 bg-success-soft text-success",
+        status.state === "unreachable" && "border-danger/30 bg-danger-soft text-danger",
+      )}
+    >
+      {status.state === "checking" && (
+        <>
+          <Spinner size="sm" /> API: checking…
+        </>
+      )}
       {status.state === "healthy" && `API: healthy (version ${status.version})`}
       {status.state === "unreachable" &&
         `API: unreachable — ${status.reason}. Is the backend running?`}

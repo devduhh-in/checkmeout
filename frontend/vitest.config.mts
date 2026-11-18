@@ -6,7 +6,10 @@ export default defineConfig({
     alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) },
   },
   test: {
+    // Logic tests run in Node; component tests opt into a simulated browser
+    // with a `// @vitest-environment jsdom` comment at the top of the file.
     environment: "node",
-    include: ["src/**/*.test.ts"],
+    include: ["src/**/*.test.{ts,tsx}"],
+    setupFiles: ["./src/test/setup.ts"],
   },
 });

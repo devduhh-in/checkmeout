@@ -12,6 +12,10 @@ export async function generateMetadata({ params }: PortfolioPageProps): Promise<
   return { title: `${username} · CheckMeOut` };
 }
 
+/**
+ * Placeholder until themes arrive (Milestone 7). Deliberately not styled with
+ * the platform design system: portfolios are rendered by their theme.
+ */
 export default async function PortfolioPage({ params }: PortfolioPageProps) {
   const { username, path } = await params;
 
@@ -20,8 +24,19 @@ export default async function PortfolioPage({ params }: PortfolioPageProps) {
   if (!isPortfolioUsername(username)) notFound();
 
   return (
-    <main>
-      <span className="surface-label">Public portfolio</span>
+    <main
+      style={{
+        fontFamily: "system-ui, sans-serif",
+        maxWidth: 560,
+        margin: "15vh auto",
+        padding: 16,
+      }}
+    >
+      <p
+        style={{ fontSize: 12, letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.6 }}
+      >
+        Public portfolio
+      </p>
       <h1>Portfolio for: {username}</h1>
       <p>
         Requested page: <code>/{path?.join("/") ?? ""}</code>
