@@ -99,6 +99,22 @@
   --animate-spin: cmo-spin 0.8s linear infinite;
 }
 
+/*
+ * Safe areas: the parts of a phone screen covered by the notch, rounded corners
+ * or the iPhone home indicator. Platform pages opt in with viewport-fit=cover
+ * (see PlatformLayout); anything pinned to a screen edge then pads itself with
+ * these so it never sits underneath them. They are 0 on screens without them.
+ */
+@utility pt-safe {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+@utility pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@utility pr-safe {
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
 @keyframes cmo-fade-in {
   from {
     opacity: 0;
@@ -160,6 +176,9 @@
     font-family: var(--cmo-font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Keep page content clear of the notch when a phone is held sideways. */
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
   }
 
   /* One visible, consistent keyboard focus style everywhere. */

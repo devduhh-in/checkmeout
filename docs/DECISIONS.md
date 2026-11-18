@@ -20,6 +20,7 @@ Short records of important decisions: what we chose, why, and what it affects. N
 **Decision:** `ModalShell` (Radix Dialog) is the single frame for modals and drawers; `useModal()` opens confirmations, forms and custom overlays; `useToast()` uses Radix Toast. Selects use the native `<select>`.
 **Why:** accessibility (focus trap, keyboard, screen readers) comes from a proven library; native select gives the familiar picker on phones with no extra code.
 **Note:** Radix only returns focus to its own trigger button, so `ModalShell` restores focus itself for overlays opened from code (covered by tests).
+**Safe areas:** platform pages set `viewport-fit=cover` so iPhones report their notch/home-indicator insets; the phone bottom sheet, drawer, toasts and page edges pad themselves with them (`pb-safe`, `pt-safe`, `pr-safe` in `styles.css`). Portfolio pages are unaffected.
 
 ### 2026-11-18 — Forms without a form library (for now)
 

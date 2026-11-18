@@ -87,6 +87,23 @@ describe("ModalShell", () => {
   });
 });
 
+describe("safe-area padding (iPhone notch and home indicator)", () => {
+  const classesOf = (element: HTMLElement) => element.className.split(/\s+/);
+
+  it("the phone bottom sheet pads its bottom edge, but not as a centred card", () => {
+    render(<ModalShell open onOpenChange={() => {}} title="Edit" />);
+    const classes = classesOf(screen.getByRole("dialog"));
+    expect(classes).toContain("pb-safe");
+    expect(classes).toContain("sm:pb-0");
+  });
+
+  it("the drawer pads every screen edge it touches", () => {
+    render(<Drawer open onOpenChange={() => {}} title="Settings" />);
+    const classes = classesOf(screen.getByRole("dialog"));
+    expect(classes).toEqual(expect.arrayContaining(["pt-safe", "pr-safe", "pb-safe"]));
+  });
+});
+
 describe("Drawer", () => {
   it("is a dialog with the same behaviour as a modal", async () => {
     const onOpenChange = vi.fn();

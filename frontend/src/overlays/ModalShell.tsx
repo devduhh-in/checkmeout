@@ -10,17 +10,19 @@ import type { OverlayControlProps } from "@/overlays/types";
 const SIZES = { sm: "sm:max-w-sm", md: "sm:max-w-lg", lg: "sm:max-w-2xl" } as const;
 
 const PLACEMENT = {
-  // Phones: a sheet rising from the bottom. Larger screens: a centred card.
+  // Phones: a sheet rising from the bottom, padded clear of the iPhone home
+  // indicator. Larger screens: a centred card (no edge, so no padding).
   center: cn(
-    "inset-x-0 bottom-0 max-h-[92dvh] rounded-t-xl",
+    "inset-x-0 bottom-0 max-h-[92dvh] rounded-t-xl pb-safe sm:pb-0",
     "data-[state=open]:animate-sheet-in data-[state=closed]:animate-sheet-out",
     "sm:inset-auto sm:top-1/2 sm:left-1/2 sm:w-[calc(100vw-2rem)] sm:max-h-[calc(100dvh-4rem)]",
     "sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-xl",
     "sm:data-[state=open]:animate-modal-in sm:data-[state=closed]:animate-modal-out",
   ),
-  // A full-height panel sliding in from the right (full width on phones).
+  // A full-height panel sliding in from the right (full width on phones),
+  // padded clear of the notch, home indicator and sideways-phone edge.
   right: cn(
-    "inset-y-0 right-0 h-dvh w-full sm:max-w-md sm:rounded-l-xl",
+    "inset-y-0 right-0 h-dvh w-full pt-safe pr-safe pb-safe sm:max-w-md sm:rounded-l-xl",
     "data-[state=open]:animate-drawer-in data-[state=closed]:animate-drawer-out",
   ),
 } as const;

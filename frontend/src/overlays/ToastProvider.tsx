@@ -120,6 +120,9 @@ export function ToastProvider({ children }: { children: ReactNode }) {
         <Toast.Viewport
           className={cn(
             "fixed right-0 bottom-0 z-[60] m-0 flex w-full list-none flex-col gap-2 p-4 outline-none",
+            // Stay above the iPhone home indicator and clear of a sideways notch.
+            "pr-[calc(--spacing(4)+env(safe-area-inset-right,0px))]",
+            "pb-[calc(--spacing(4)+env(safe-area-inset-bottom,0px))]",
             "sm:max-w-sm",
           )}
         />
