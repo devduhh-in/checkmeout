@@ -135,6 +135,8 @@ Open these addresses in **Chrome, Edge or Firefox** (see section 6 for Safari):
 
 **Check what happens when the backend is off:** stop Terminal 1 (`Ctrl + C`), then refresh http://app.localhost:3000. It should say **"API: unreachable — the API is not responding. Is the backend running?"** Start the backend again and refresh: it goes back to "healthy".
 
+**Design system showcase:** http://localhost:3000/design-system shows every colour, button, form field, card, modal, drawer and notification. Use the Light/Dark buttons to preview dark mode. (It's also on Vercel preview links, never on the live site.)
+
 **Bonus — the backend on its own:** http://localhost:8000/api/health shows the raw health response, and http://localhost:8000/api/docs shows interactive API documentation (only available in development).
 
 ---
@@ -173,8 +175,8 @@ Another program is using port 3000. Everything still works — just use `:3001` 
 **`npm` or `uv` "command not found".**
 Close and reopen the terminal after installing. If it still fails, re-run the installer from section 2.1.
 
-**The page looks unstyled.**
-That's expected. Milestone 1 only has plain placeholder pages; the design system arrives in Milestone 2.
+**The portfolio page looks plain.**
+That's expected: portfolios will be styled by themes (Milestone 7), not by the platform design system.
 
 ---
 

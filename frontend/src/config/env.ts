@@ -15,6 +15,11 @@ export interface FrontendConfig {
   apiOrigin: string;
   /** Allow /_preview/<username> on hosts outside rootDomain (preview deployments only). */
   enablePreviewPaths: boolean;
+  /**
+   * Show internal tools such as the component showcase (/design-system).
+   * On in local development and Vercel preview deployments, always off in production.
+   */
+  showInternalTools: boolean;
 }
 
 type Env = Record<string, string | undefined>;
@@ -63,7 +68,17 @@ export function readConfig(env: Env = process.env): FrontendConfig {
     appSubdomain,
     apiOrigin: apiUrl.origin,
     enablePreviewPaths: env.ENABLE_PREVIEW_PATHS === "true",
+    showInternalTools: isNonProduction(env),
   };
+}
+
+/**
+ * Vercel sets VERCEL_ENV to "production", "preview" or "development" on every
+ * deployment. Elsewhere (your computer) we fall back to Node's NODE_ENV.
+ */
+function isNonProduction(env: Env): boolean {
+  if (env.VERCEL_ENV) return env.VERCEL_ENV !== "production";
+  return env.NODE_ENV !== "production";
 }
 
 let cached: FrontendConfig | undefined;

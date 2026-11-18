@@ -1,0 +1,115 @@
+/*
+ * CheckMeOut design tokens — the single source of truth for the platform's look.
+ *
+ * Change a value here and every page and component updates. Nothing else in the
+ * codebase should hard-code colours, sizes, radii, shadows or timings.
+ *
+ * Colours use light-dark(<light>, <dark>): the browser picks the right value from
+ * the current colour scheme, so each colour is written exactly once.
+ * Light mode is the default; dark mode is enabled with data-theme="dark" on <html>.
+ *
+ * Text colour pairs meet WCAG AA contrast (4.5:1); input borders meet 3:1.
+ * These tokens style the CheckMeOut platform (marketing site and dashboard),
+ * not creators' portfolios — portfolio themes bring their own styles.
+ */
+
+:root {
+  color-scheme: light;
+
+  /* ── Colour: surfaces ─────────────────────────────────────────── */
+  --cmo-color-bg: light-dark(#fbf7f2, #171310); /* page background, warm off-white */
+  --cmo-color-surface: light-dark(#ffffff, #211b17); /* cards, modals, inputs */
+  --cmo-color-surface-sunken: light-dark(#f4eee6, #120f0c); /* wells, subtle fills */
+  --cmo-color-overlay: light-dark(rgb(35 28 23 / 0.45), rgb(0 0 0 / 0.6)); /* behind modals */
+
+  /* ── Colour: text ─────────────────────────────────────────────── */
+  --cmo-color-text: light-dark(#231c17, #f5efe8);
+  --cmo-color-text-muted: light-dark(#6a5f56, #b4a89c);
+
+  /* ── Colour: lines ────────────────────────────────────────────── */
+  --cmo-color-border: light-dark(#e6ddd2, #3a312a); /* decorative dividers */
+  --cmo-color-border-strong: light-dark(#958779, #7a6c60); /* form controls (3:1) */
+
+  /* ── Colour: brand & intent ───────────────────────────────────── */
+  --cmo-color-primary: light-dark(#c2492a, #f07a57); /* warm terracotta */
+  --cmo-color-primary-hover: light-dark(#a93d21, #f5916f);
+  --cmo-color-primary-soft: light-dark(#fbe9e2, #3a2219);
+  --cmo-color-on-primary: light-dark(#ffffff, #1c0d06);
+  --cmo-color-danger: light-dark(#b42318, #f97066);
+  --cmo-color-danger-hover: light-dark(#912018, #fb8a81);
+  --cmo-color-danger-soft: light-dark(#fdecea, #3b1a17);
+  --cmo-color-on-danger: light-dark(#ffffff, #1c0d06);
+  --cmo-color-success: light-dark(#1f7a4d, #47c28a);
+  --cmo-color-success-soft: light-dark(#e6f4ec, #15301f);
+  --cmo-color-warning: light-dark(#a15c07, #f2b14c);
+  --cmo-color-info: light-dark(#2f5fad, #7fa8ee);
+  --cmo-color-focus: light-dark(#c2492a, #f07a57);
+
+  /* ── Typography ───────────────────────────────────────────────── */
+  --cmo-font-sans:
+    var(--font-plus-jakarta), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    sans-serif;
+  --cmo-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --cmo-text-xs: 0.75rem;
+  --cmo-text-xs-leading: 1rem;
+  --cmo-text-sm: 0.875rem;
+  --cmo-text-sm-leading: 1.25rem;
+  --cmo-text-base: 1rem;
+  --cmo-text-base-leading: 1.5rem;
+  --cmo-text-lg: 1.125rem;
+  --cmo-text-lg-leading: 1.75rem;
+  --cmo-text-xl: 1.25rem;
+  --cmo-text-xl-leading: 1.75rem;
+  --cmo-text-2xl: 1.5rem;
+  --cmo-text-2xl-leading: 2rem;
+  --cmo-text-3xl: 1.875rem;
+  --cmo-text-3xl-leading: 2.25rem;
+  --cmo-text-4xl: 2.5rem;
+  --cmo-text-4xl-leading: 2.875rem;
+
+  --cmo-weight-regular: 400;
+  --cmo-weight-medium: 500;
+  --cmo-weight-semibold: 600;
+  --cmo-weight-bold: 700;
+
+  /* ── Spacing: one 4px step; utilities like p-4 = 4 × 4px = 16px ─ */
+  --cmo-space-unit: 0.25rem;
+
+  /* ── Radius ───────────────────────────────────────────────────── */
+  --cmo-radius-sm: 0.375rem; /* 6px: small chips */
+  --cmo-radius-md: 0.625rem; /* 10px: buttons, inputs */
+  --cmo-radius-lg: 0.875rem; /* 14px: cards */
+  --cmo-radius-xl: 1.25rem; /* 20px: modals, drawers */
+  --cmo-radius-full: 9999px;
+
+  /* ── Shadows (warm-tinted, soft) ──────────────────────────────── */
+  --cmo-shadow-sm: 0 1px 2px light-dark(rgb(35 28 23 / 0.06), rgb(0 0 0 / 0.4));
+  --cmo-shadow-md:
+    0 1px 2px light-dark(rgb(35 28 23 / 0.05), rgb(0 0 0 / 0.35)),
+    0 4px 12px light-dark(rgb(35 28 23 / 0.07), rgb(0 0 0 / 0.35));
+  --cmo-shadow-lg:
+    0 2px 6px light-dark(rgb(35 28 23 / 0.06), rgb(0 0 0 / 0.4)),
+    0 16px 40px light-dark(rgb(35 28 23 / 0.14), rgb(0 0 0 / 0.55));
+
+  /* ── Motion ───────────────────────────────────────────────────── */
+  --cmo-duration-fast: 120ms;
+  --cmo-duration-base: 200ms;
+  --cmo-duration-slow: 280ms;
+  --cmo-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --cmo-ease-in: cubic-bezier(0.4, 0, 1, 1);
+}
+
+/* Dark mode foundation: opt in with <html data-theme="dark">. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* Respect people who ask their system for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --cmo-duration-fast: 1ms;
+    --cmo-duration-base: 1ms;
+    --cmo-duration-slow: 1ms;
+  }
+}

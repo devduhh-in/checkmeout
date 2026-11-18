@@ -1,12 +1,12 @@
+import { PlaceholderPage } from "@/components/PlaceholderPage";
+
 export default function MarketingHome() {
   return (
-    <main>
-      <span className="surface-label">Marketing site</span>
-      <h1>CheckMeOut</h1>
+    <PlaceholderPage label="Marketing site" title="CheckMeOut">
       <p>Build and publish your professional portfolio without writing code.</p>
-      <p>
-        <small>Placeholder page. The real landing page arrives in a later milestone.</small>
+      <p className="text-sm">
+        Placeholder page. The real landing page arrives in a later milestone.
       </p>
-    </main>
+    </PlaceholderPage>
   );
 }
